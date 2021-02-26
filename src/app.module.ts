@@ -4,9 +4,15 @@ import { AuthService } from './auth/services/auth.service';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [AuthModule, ConfigModule.forRoot(), UserModule],
+  imports: [
+    MongooseModule.forRoot('mongodb://localhost/nest'),
+    ConfigModule.forRoot(),
+    AuthModule,
+    UserModule,
+  ],
   controllers: [AuthController],
   providers: [AuthService],
 })
